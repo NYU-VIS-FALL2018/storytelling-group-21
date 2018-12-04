@@ -1,7 +1,7 @@
 # Project Name
-**Authors**: Jhon Doe (jd2545), Mark Smith (ms4568)
+**Authors**: Kinjal Rathod(kmr591), Ishita Verma(iv447), Vivek Bharti(vb1275)
 
-Group X (Online: Group Y) 
+Group 21 (Online: Group 6) 
 
 ![Screenhot](screenshot.jpg)
 
