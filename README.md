@@ -3,7 +3,7 @@
 
 Group 21 (Online: Group 6) 
 
-![Screenhot](screenshot.jpg)
+![Screenhot](smilies.jpg)
 
 
 ## About
