@@ -10,6 +10,6 @@ Group 21 (Online: Group 6)
 In this project we ...
 
 ## More
-[DEMO](https://nyu-vis-fall2018.github.io/project-template/)
+[DEMO](https://NYU-VIS-FALL2018/storytelling-group-21/)
 
 [Project Descrioption](project.pdf)
