@@ -96,7 +96,7 @@ bottom happy countries.
           <div style="border:3px solid;">
           <svg id="topBottom"></svg>
           <hr>
-          <h2>Bottom 10 Countries</h2>
+          <h2>Bottom 10 Countries:</h2>
           <svg id="Bottom"></svg>
 
           </div>
@@ -423,7 +423,7 @@ function loadData()
 {
   queue()
   .defer(d3.json, "countries.geo.json")
-  .defer(d3.csv, "Q2_Top_10.csv")
+  .defer(d3.csv, "Q2_Change_Combined")
   .await(ready);
 }
 
