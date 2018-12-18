@@ -1,167 +1,93 @@
-var margin = { top: 50, right: 300, bottom: 50, left: 50 },
-    outerWidth = 1050,
-    outerHeight = 500,
-    width = outerWidth - margin.left - margin.right,
-    height = outerHeight - margin.top - margin.bottom;
+const xValue = d => d["Log of GDP per person, 2015-2017"];
+const xLabel = 'Log of GDP per person, 2015-2017';
+const yValue = d => d["Life ladder, 2015-2017"];
+const yLabel = 'Life ladder, 2015-2017';
+const colorValue = d => d["Region indicator"];
+const colorLabel = 'Regions';
+const margin1 = { top: 50, right: 300, bottom: 50, left: 50 };
 
-var x = d3.scale.linear()
-    .domain([0,100])
-    .range([0, width]).nice();
+const svg1 = d3.select('#svgscatter');
+const width1 = svg1.attr('width');
+const height1 = svg1.attr('height');
+const innerWidth1 = width1 - margin1.left - margin1.right;
+const innerHeight1 = height1 - margin1.top - margin1.bottom;
 
-var y = d3.scale.linear()
-    .range([height, 0]).nice();
+const g = svg1.append('g')
+    .attr('transform', `translate(${margin1.left},${margin1.top})`);
+const xAxisG = g.append('g')
+    .attr('transform', `translate(0, ${innerHeight1})`);
+const yAxisG = g.append('g');
+const colorLegendG = g.append('g')
+    .attr('transform', `translate(${innerWidth1 + 60}, 150)`);
 
-var xCat = "Log of GDP per person, 2015-2017",
-    yCat = "Life ladder, 2015-2017";
+xAxisG.append('text')
+    .attr('class', 'axis-label')
+    .attr('x', innerWidth1 / 2)
+    .attr('y', 100)
+    .text(xLabel);
 
-d3.csv("happiness_data.csv", function(data) {
-  data.forEach(function(d) {
-    d["Log of GDP per person, 2015-2017"] = +d["Log of GDP per person, 2015-2017"];
-    d["Life ladder, 2015-2017"] = +d["Life ladder, 2015-2017"];
-  });
+yAxisG.append('text')
+    .attr('class', 'axis-label')
+    .attr('x', -innerHeight1 / 2)
+    .attr('y', -60)
+    .attr('transform', `rotate(-90)`)
+    .style('text-anchor', 'middle')
+    .text(yLabel);
 
-  var xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.05,
-      xMin = d3.min(data, function(d) { return d[xCat]; }),
-      xMin = xMin > 0 ? 0 : xMin,
-      yMax = d3.max(data, function(d) { return d[yCat]; }) * 1.05,
-      yMin = d3.min(data, function(d) { return d[yCat]; }),
-      yMin = yMin > 0 ? 0 : yMin;
+colorLegendG.append('text')
+    .attr('class', 'legend-label')
+    .attr('x', -30)
+    .attr('y', -40)
+    .text(colorLabel);
 
-  x.domain([xMin, xMax]);
-  y.domain([yMin, yMax]);
+const xScale = d3.scaleLinear();
+const yScale = d3.scaleLinear();
+const colorScale = d3.scaleOrdinal()
+  .range(d3.schemeCategory10);
 
-  var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient("bottom")
-      .tickSize(-height);
+const xAxis = d3.axisBottom()
+  .scale(xScale)
+  .tickPadding(15)
+  .tickSize(-innerHeight1);
 
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient("left")
-      .tickSize(-width);
+const yAxis = d3.axisLeft()
+  .scale(yScale)
+  .ticks(5)
+  .tickPadding(15)
+  .tickSize(-innerWidth1);
 
-  var color = d3.scale.category10();
+const colorLegend = d3.legendColor()
+  .scale(colorScale)
+  .shape('circle');
 
-  var tip = d3.tip()
-      .attr("class", "d3-tip")
-      .offset([-10, 0])
-      .html(function(d) {
-        return xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
-      });
+const row = d => {
+  d["Log of GDP per person, 2015-2017"] = +d["Log of GDP per person, 2015-2017"];
+  d["Life ladder, 2015-2017"] = +d["Life ladder, 2015-2017"];
+  return d;
+};
 
-  var zoomBeh = d3.behavior.zoom()
-      .x(x)
-      .y(y)
-      .scaleExtent([0, 500])
-      .on("zoom", zoom);
+d3.csv('happiness_data.csv', row, data => {
+  xScale
+    .domain(d3.extent(data, xValue))
+    .range([0, innerWidth1])
+    .nice();
 
-  var svg = d3.select("#scatter")
-    .append("svg")
-      .attr("width", outerWidth)
-      .attr("height", outerHeight)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-      .call(zoomBeh);
+  yScale
+    .domain(d3.extent(data, yValue))
+    .range([innerHeight1, 0])
+    .nice();
 
-  svg.call(tip);
+  g.selectAll('circle').data(data)
+    .enter().append('circle')
+      .attr('cx', d => xScale(xValue(d)))
+      .attr('cy', d => yScale(yValue(d)))
+      .attr('fill', d => colorScale(colorValue(d)))
+      .attr('fill-opacity', 0.6)
+      .attr('r', 8);
 
-  svg.append("rect")
-      .attr("width", width)
-      .attr("height", height);
-
-  svg.append("g")
-      .classed("x axis", true)
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .append("text")
-      .classed("label", true)
-      .attr("x", width)
-      .attr("y", margin.bottom - 10)
-      .style("text-anchor", "end")
-      .text(xCat);
-
-  svg.append("g")
-      .classed("y axis", true)
-      .call(yAxis)
-    .append("text")
-      .classed("label", true)
-      .attr("transform", "rotate(-90)")
-      .attr("y", -margin.left)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text(yCat);
-
-  var objects = svg.append("svg")
-      .classed("objects", true)
-      .attr("width", width)
-      .attr("height", height);
-
-  objects.append("svg:line")
-      .classed("axisLine hAxisLine", true)
-      .attr("x1", 0)
-      .attr("y1", 0)
-      .attr("x2", width)
-      .attr("y2", 0)
-      .attr("transform", "translate(0," + height + ")");
-
-  objects.append("svg:line")
-      .classed("axisLine vAxisLine", true)
-      .attr("x1", 0)
-      .attr("y1", 0)
-      .attr("x2", 0)
-      .attr("y2", height);
-
-  objects.selectAll(".dot")
-      .data(data)
-    .enter().append("circle")
-      .classed("dot", true)
-      .attr("r",5.5)
-      .attr("transform", transform)
-      .style("fill","#66b3ff")
-      .on("mouseover", tip.show)
-      .on("mouseout", tip.hide);
-
-  var legend = svg.selectAll(".legend")
-      .data(color.domain())
-    .enter().append("g")
-      .classed("legend", true)
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-  legend.append("circle")
-      .attr("r", 3.5)
-      .attr("cx", width + 20)
-      .attr("fill", color);
-
-  legend.append("text")
-      .attr("x", width + 26)
-      .attr("dy", ".35em")
-      .text(function(d) { return d; });
-
-  d3.select("input").on("click", change);
-
-  function change() {
-    xCat = "Log of GDP per person, 2015-2017";
-    xMax = d3.max(data, function(d) { return d[xCat]; });
-    xMin = d3.min(data, function(d) { return d[xCat]; });
-
-    zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
-
-    var svg = d3.select("#scatter").transition();
-
-    svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
-
-    objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
-  }
-
-  function zoom() {
-    svg.select(".x.axis").call(xAxis);
-    svg.select(".y.axis").call(yAxis);
-
-    svg.selectAll(".dot")
-        .attr("transform", transform);
-  }
-
-  function transform(d) {
-    return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
-  }
+  xAxisG.call(xAxis);
+  yAxisG.call(yAxis);
+  colorLegendG.call(colorLegend)
+    .selectAll('.cell text')
+      .attr('dy', '0.1em');
 });
