@@ -3,23 +3,16 @@
     <meta charset="utf-8">
     <title>Visualization</title>
     <link rel="stylesheet" href="scatter.css" charset="utf-8">
-    <style>
-     body {
-   background-color: #404040;
-   color:white;
-     }
-     a{
-       color: white;
-
-     }
-     .container{
-       margin: 100px;
-     }
-   </style>
   </head>
   <body>
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:5vw;text-align:center">Happiness Analysis</h1>
+  </div>
+</div>
+
 <div class="container">
-    <h1 style="font-size:5vw;">Happiness Analysis</h1>
     <p>By taking the World Happiness Index into account we are planning to analyze how the
 happiness of people vary across the different regions of the world. Which places are happiest
 and unhappiest. How different factors contribute to happiness and satisfaction of people. Using
@@ -28,17 +21,109 @@ individuals is subjective and effected by a number of factors through this proje
 analyze these factors and how they contribute to the overall happiness of a country/region. The
 project also aims to visualize the effect of political factors on the life satisfaction of the people.</p>
 <h2>See the inferences below</h2>
-<ul>
-<li><h3><a href="top_bottom.html">Happiness is difficult to try and quantify</a></h3></li>
-<li><h3><a href="Q2_Backup.html">Life Changes and so does Happiness</a></h3></li>
-<li><h3><a href="life_ladder.html">Money plays a key role in an individual's life satisfaction.</a></h3></li>
-</ul>
+
+<h3><a href="javascript:;" id="Q1text">Happiness is difficult to try and quantify</a></h3>
+<div id="Q1para">
+  Wikipedia defines happiness as: Happiness in its broad sense is the label for a family of
+  pleasant emotional states, such as joy, amusement, satisfaction, gratification, euphoria, and
+  triumph. Many factors play a role in the happiness of an individual, when defining the happiness
+  index across countries many attributes play a factor like Democratic Quality, GDP Per Capita,
+  Social Support for an individual, Life Expectancy, Freedom, Corruption, Confidence in National
+  Government. With these many factors into play, Scandinavian Countries, Northern America top
+  the chart for happiness. The Scandinavian countries like Finland followed by Norway seem to
+  dominate the world happiness charts whereas Burundi followed by the Central African Republic
+  are the least happy countries
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js">	 </script>
+<div>
+  <ul style="margin-bottom:10px;" class="legend">
+    <li><span class="bottom"></span> Bottom 10 Countries</li>
+    <li><span class="top"></span> Top 10 Countries</li>
+  </ul>
+</div>
+<svg id="topBottom"></svg>
+<svg id="topBottom"></svg>
+<hr>
+<svg id="Bottom"></svg>
+
+
+<h3><a href="javascript:;" id="Q2text">Life Changes and so does Happiness</a></h3>
+<div id="Q2para">
+  Happiness is a state of well-being that encompasses living a good life. Happiness is subjective
+  and can change over time or due to certain conditions as well. When you ask an individual
+  about his happiness at a particular time his answer will depend on the recent happenings in life,
+  with that being said it may happen that his answer will change after a given period of time. For
+  most of the countries, the happiness index has only increased over time from 2010 to 2018 for
+  countries like Iceland, Finland Which were in the top happy to begin with in 2010. Malawi and
+  Syria have a maximum deficit in happiness from 2010 to 2018 and these countries were part of
+  bottom happy countries.
+</div>
+
+<svg id="svg2"></svg>
+
+<h3><a href="javascript:;" id="Q4text">Money plays a key role in an individual's life satisfaction.</a></h3>
+<div id="Q4para">
+  When you ask an individual whether or not they are satisfied with their life there are a variety of
+  factors that are evaluated. An individual may rate their life according to what has happened
+  recently in their life whether they have lost a job, moved to a new place, got a promotion etc.
+  Some may evaluate their life according to their life goals as to what age they are on and what
+  have they achieved. Now most of the people might evaluate their life satisfaction by how much
+  money they earn i.e. Their income. The higher the income of a person, he evaluates himself to
+  be more satisfied with life.Indeed, citizens' satisfaction is related to how much money they
+  make.
+</div>
+<svg id="svgscatter" width="960" height="500"></svg>
+
+<h3><a href="javascript:;" id="Q5text">Life satisfaction based on political state</a></h3>
+<div id="Q5para">
+  When you ask an individual whether or not they are satisfied with their life there are a variety of
+  factors that are evaluated. An individual may rate their life according to what has happened
+  recently in their life whether they have lost a job, moved to a new place, got a promotion etc.
+  Some may evaluate their life according to their life goals as to what age they are on and what
+  have they achieved. Now most of the people might evaluate their life satisfaction by how much
+  money they earn i.e. Their income. The higher the income of a person, he evaluates himself to
+  be more satisfied with life.Indeed, citizens' satisfaction is related to how much money they
+  make.
+</div>
+
+<svg id="chart" width="500" height="270">></svg>
+<svg id="chart1" width="500" height="270">></svg>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="c3/c3.min.js"></script>
+
+<script>
+$("#Q1text").click(function(){
+$("#Q1para").toggle();
+});
+
+$("#Q2text").click(function(){
+$("#Q2para").toggle();
+});
+
+$("#Q3text").click(function(){
+$("#Q3para").toggle();
+});
+
+$("#Q4text").click(function(){
+$("#Q4para").toggle();
+});
+
+$("#Q5text").click(function(){
+$("#Q5para").toggle();
+});
+
+</script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="d3-tip.js" charset="utf-8"></script>
+    <script src="Q1.js" charset="utf-8"></script>
+    <script src="Q2.js" charset="utf-8"></script>
     <script src="scatter.js" charset="utf-8"></script>
-    <script src="map.js" charset="utf-8"></script>
+    <script src="Q5.js" charset="utf-8"></script>
   </body>
 </html>
