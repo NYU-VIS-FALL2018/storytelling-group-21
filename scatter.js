@@ -23,13 +23,13 @@ const colorLegendG = g.append('g')
 xAxisG.append('text')
     .attr('class', 'axis-label')
     .attr('x', innerWidth1 / 2)
-    .attr('y', 100)
+    .attr('y', 45)
     .text(xLabel);
 
 yAxisG.append('text')
     .attr('class', 'axis-label')
-    .attr('x', -innerHeight1 / 2)
-    .attr('y', -60)
+    .attr('x', -30)
+    .attr('y', -25)
     .attr('transform', `rotate(-90)`)
     .style('text-anchor', 'middle')
     .text(yLabel);

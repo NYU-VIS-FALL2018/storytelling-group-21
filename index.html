@@ -22,7 +22,7 @@ analyze these factors and how they contribute to the overall happiness of a coun
 project also aims to visualize the effect of political factors on the life satisfaction of the people.</p>
 <h2>See the inferences below</h2>
 
-<h3><a href="javascript:;" id="Q1text">Happiness is difficult to try and quantify</a></h3>
+<h3>Happiness is difficult to try and quantify</h3>
 <div id="Q1para">
   Wikipedia defines happiness as: Happiness in its broad sense is the label for a family of
   pleasant emotional states, such as joy, amusement, satisfaction, gratification, euphoria, and
@@ -42,14 +42,15 @@ project also aims to visualize the effect of political factors on the life satis
 </div>
 
 <svg id="topBottom"></svg>
-<svg id="topBottom"></svg>
 <hr>
-<h3><a href="Q1_Complete_map.html">Q1 complete chart</a></h3>
-<svg id="Bottom"></svg>
+<div>
+  <ul style="margin-bottom:10px;" class="legendhue">
+    <li><span class="q1complete"></span> Happiness Index in increasing order all over the world</li>
+  </ul>
+</div>
+<svg id="Q1Complete"></svg>
 
-
-
-<h3><a href="javascript:;" id="Q2text">Life Changes and so does Happiness</a></h3>
+<h3>Life Changes and so does Happiness</h3>
 <div id="Q2para">
   Happiness is a state of well-being that encompasses living a good life. Happiness is subjective
   and can change over time or due to certain conditions as well. When you ask an individual
@@ -60,34 +61,46 @@ project also aims to visualize the effect of political factors on the life satis
   Syria have a maximum deficit in happiness from 2010 to 2018 and these countries were part of
   bottom happy countries.
 </div>
-<h3><a href="Q2_Complete_map.html">Q2 complete chart</a></h3>
+<div>
+  <ul style="margin-bottom:10px;" class="legendhue">
+    <li><span class="q2"></span> Decrease in Happiness Index</li>
+    <li><span class="q22"></span> Increase in Happiness Index</li>
+  </ul>
+</div>
+</br>
+</br>
+</br>
 <svg id="svg2"></svg>
 
-<h3><a href="javascript:;" id="Q3text">Moving to a happy Country can make you happier ??</a></h3>
+<h3>Moving to a happy Country can make you happier ??</h3>
 <div id="Q3para">
-  Moving Countries is a difficult situation for anybody be it a personal decision or due to conditions 
-  where one is forced to move. Moving to a happy country can make an individual happy. 
-  Happiness is heavily influenced by surroundings and the quality of life that a country can offer. 
-  In general the countries that are happier in terms of happiness index are also high with their 
+  Moving Countries is a difficult situation for anybody be it a personal decision or due to conditions
+  where one is forced to move. Moving to a happy country can make an individual happy.
+  Happiness is heavily influenced by surroundings and the quality of life that a country can offer.
+  In general the countries that are happier in terms of happiness index are also high with their
   immigrant happiness i.e how happy are immigrants in that country.
 </div>
 
 <div>
-  <ul style="margin-bottom:10px;" class="legend">
-    <li><span class="bottom"></span> Bottom 10 Countries</li>
-    <li><span class="top"></span> Top 10 Countries</li>
+  <ul style="margin-bottom:10px;" class="legendhue">
+    <li><span class="q3"></span> Top 5 countries with high Foreign Happiness Index</li>
+    <li><span class="q33"></span> Bottom 5 countries with high Foreign Happiness Index</li>
   </ul>
 </div>
-<svg id="Q3_map"></svg>
+</br>
+</br>
+</br>
+<svg id="Q3bar" width="960" height="500"></svg>
+<div>
+  <ul style="margin-bottom:10px;" class="legend">
+    <li><span class="bottom"></span>Bottom 5 countries with high Foreign Happiness Index</li>
+    <li><span class="top"></span>Top 5 countries with high Foreign Happiness Index</li>
+  </ul>
+</div>
+<div style="clear:both"></div>
 <svg id="Q3_map"></svg>
 <hr>
-<h3><a href="Q3_map.html">map chart</a></h3>
-<h3><a href="Q3_bar.html">bar chart</a></h3>
-<svg id="Bottom"></svg>
-
-
-
-<h3><a href="javascript:;" id="Q4text">Money plays a key role in an individual's life satisfaction.</a></h3>
+<h3>Money plays a key role in an individual's life satisfaction.</h3>
 <div id="Q4para">
   When you ask an individual whether or not they are satisfied with their life there are a variety of
   factors that are evaluated. An individual may rate their life according to what has happened
@@ -98,9 +111,9 @@ project also aims to visualize the effect of political factors on the life satis
   be more satisfied with life.Indeed, citizens' satisfaction is related to how much money they
   make.
 </div>
-<svg id="svgscatter" width="960" height="500"></svg>
+<svg id="svgscatter" width="1000" height="540"></svg>
 
-<h3><a href="javascript:;" id="Q5text">Life satisfaction based on political state</a></h3>
+<h3>Life satisfaction based on political state</h3>
 <div id="Q5para">
   When you ask an individual whether or not they are satisfied with their life there are a variety of
   factors that are evaluated. An individual may rate their life according to what has happened
@@ -120,25 +133,6 @@ project also aims to visualize the effect of political factors on the life satis
 <script src="c3/c3.min.js"></script>
 
 <script>
-$("#Q1text").click(function(){
-$("#Q1para").toggle();
-});
-
-$("#Q2text").click(function(){
-$("#Q2para").toggle();
-});
-
-$("#Q3text").click(function(){
-$("#Q3para").toggle();
-});
-
-$("#Q4text").click(function(){
-$("#Q4para").toggle();
-});
-
-$("#Q5text").click(function(){
-$("#Q5para").toggle();
-});
 
 </script>
 
@@ -149,8 +143,10 @@ $("#Q5para").toggle();
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="d3-tip.js" charset="utf-8"></script>
     <script src="Q1.js" charset="utf-8"></script>
-    <script src="Q2.js" charset="utf-8"></script>
-    <script src="Q3.js" charset="utf-8"></script>
+    <script src="Q3bar.js" charset="utf-8"></script>
+    <!-- <script src="Q1complete.js" charset="utf-8"></script>
+    <script src="Q2.js" charset="utf-8"></script> -->
+    <!-- <script src="Q3.js" charset="utf-8"></script> -->
     <script src="scatter.js" charset="utf-8"></script>
     <script src="Q5.js" charset="utf-8"></script>
   </body>
