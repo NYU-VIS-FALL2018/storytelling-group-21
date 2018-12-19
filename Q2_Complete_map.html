@@ -91,7 +91,7 @@
 
       <div style="margin:100px;">
         
-          <h1>World Happiness Change</h1>
+          <h1>World Happiness Index</h1>
 
           <div>
           <p>
@@ -397,7 +397,7 @@ var xtip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function(d) {
-              return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Happiness Index: </strong><span class='details'>"+ format(d.Happiness_Index_2018) +"</span>";
+              return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Happiness Index: </strong><span class='details'>"+ format(d.CHANGE) +"</span>";
             })
 
 
@@ -406,8 +406,8 @@ var margin = {top: 0, right: 0, bottom: 0, left: 0},
             height = 500 - margin.top - margin.bottom;
 
 var dcolor = d3.scaleThreshold()
-    .domain([1,2,3,4,5,6,7,8,9,10])
-    .range(["rgb(247,251,255)", "rgb(224,224,224)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
+    .domain([-1,-0.75,-0.5,-0.25,0,0.25,0.5,0.75,1,1.25, 1.50,100])
+    .range(["rgb(255,69,0)", "rgb(255,127,80)", "rgb(255,140,0)", "rgb(255,215,0)", "rgb(255,255,255)", "rgb(173,216,230)","rgb(135,206,235)","rgb(30,144,255)","rgb(65,105,225)","rgb(0,0,205)","rgb(0,0,128)", "rgb(255,255,255)"]);
 
 
 
@@ -433,7 +433,7 @@ function loadData()
 {
   queue()
   .defer(d3.json, "countries.geo.json")
-  .defer(d3.csv, "q1_all_countries.csv")
+  .defer(d3.csv, "q2_all_countries.csv")
   .await(ready);
 }
 
@@ -478,24 +478,24 @@ function display(container, data, dataset, rcv_clr_or_dnr_clr) {
   var countryiesById = {};
 
 
-    // dataset.forEach(function(d) { countryiesById[d.Country] = +d["Happiness_Index_2018"]; });
+    // dataset.forEach(function(d) { countryiesById[d.Country] = +d["CHANGE"]; });
     // console.log(countryiesById)
 
 
     var topData = dataset.sort(function(a, b) {
-            return d3.descending(+a.Happiness_Index_2018, +b.Happiness_Index_2018);
+            return d3.descending(+a.CHANGE, +b.CHANGE);
           })
-    // topData.forEach(function(d) { countryiesById[d.Country] = +d["Happiness_Index_2018"]; });
+    // topData.forEach(function(d) { countryiesById[d.Country] = +d["CHANGE"]; });
     // console.log(countryiesById)
 
     var bottomData = dataset.sort(function(a, b) {
-                  return d3.ascending(+a.Happiness_Index_2018, +b.Happiness_Index_2018);
+                  return d3.ascending(+a.CHANGE, +b.CHANGE);
                 }).slice(0,10)
 
     allData = extend(topData, bottomData);
 
-    allData.forEach(function(d) { countryiesById[d.Country] = +d["Happiness_Index_2018"] });
-    data.features.forEach(function(d) { d["Happiness_Index_2018"] = countryiesById[d.properties.name] });
+    allData.forEach(function(d) { countryiesById[d.Country] = +d["CHANGE"] });
+    data.features.forEach(function(d) { d["CHANGE"] = countryiesById[d.properties.name] });
 
 
 
