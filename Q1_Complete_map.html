@@ -484,7 +484,7 @@ function display(container, data, dataset, rcv_clr_or_dnr_clr) {
 
     var topData = dataset.sort(function(a, b) {
             return d3.descending(+a.Happiness_Index_2018, +b.Happiness_Index_2018);
-          }).slice(0,10)
+          })
     // topData.forEach(function(d) { countryiesById[d.Country] = +d["Happiness_Index_2018"]; });
     // console.log(countryiesById)
 
