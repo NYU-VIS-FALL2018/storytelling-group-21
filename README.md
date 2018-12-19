@@ -5,13 +5,13 @@ Group 21 (Online: Group 6)
 
 ![Screenhot](smilies.jpg)
 
-![Screenhot](5.jpg)
-![Screenhot](2.jpg)
-![Screenhot](3.jpg)
-![Screenhot](4.jpg)
-![Screenhot](1.jpg)
-![Screenhot](6.jpg)
-![Screenhot](7.jpg)
+![Screenhot](5.jpeg)
+![Screenhot](2.jpeg)
+![Screenhot](3.jpeg)
+![Screenhot](4.jpeg)
+![Screenhot](1.jpeg)
+![Screenhot](6.jpeg)
+![Screenhot](7.jpeg)
 
 
 ## About
