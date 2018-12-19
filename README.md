@@ -5,6 +5,14 @@ Group 21 (Online: Group 6)
 
 ![Screenhot](smilies.jpg)
 
+![Screenhot](5.jpg)
+![Screenhot](2.jpg)
+![Screenhot](3.jpg)
+![Screenhot](4.jpg)
+![Screenhot](1.jpg)
+![Screenhot](6.jpg)
+![Screenhot](7.jpg)
+
 
 ## About
 By taking the World Happiness Index into account we are planning to analyze how the happiness of people vary across the different regions of the world. Which places are happiest and unhappiest. How different factors contribute to happiness and satisfaction of people. Using the temporal aspect of the data, happiness index is compared over time. Happiness of individuals is subjective and effected by a number of factors through this project we aim to analyze these factors and how they contribute to the overall happiness of a country/region. The project also aims to visualize the effect of political factors on the life satisfaction of the people.
